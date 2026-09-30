@@ -1,0 +1,16 @@
+{
+  "name": "Foodnesia",
+  "version": "1.0.0",
+  "description": "Demo web app pemesanan makanan Indonesia dengan delivery.",
+  "features": [
+    "Search makanan/restoran",
+    "Kategori makanan",
+    "Sort rating/harga",
+    "Keranjang belanja",
+    "Checkout demo",
+    "Pemilihan lokasi",
+    "Promo code",
+    "Responsive mobile"
+  ],
+  "note": "Versi ini adalah frontend demo. Pembayaran, login, database, GPS, dan delivery real-time belum terhubung ke layanan backend."
+}

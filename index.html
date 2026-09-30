@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Foodnesia - pesan makanan Indonesia favoritmu, cepat dan mudah.">
+  <title>Foodnesia — Pesan Makanan Indonesia</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="#"><span class="brand-mark">F</span><span>food<span>nesia</span></span></a>
+      <div class="search-wrap">
+        <span>⌕</span>
+        <input id="searchInput" type="search" placeholder="Cari makanan, restoran, atau menu...">
+      </div>
+      <button class="location" id="locationBtn">📍 <span id="locationText">Pilih lokasi</span></button>
+      <button class="cart-btn" id="cartBtn">🛒 <span>Keranjang</span><b id="cartCount">0</b></button>
+      <button class="menu-btn" id="menuBtn">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">🇮🇩 Kuliner Nusantara, satu aplikasi</p>
+          <h1>Lapar? <span>Gaskeun.</span><br>Pesan makanan favoritmu.</h1>
+          <p class="hero-copy">Dari nasi goreng sampai rendang, temukan makanan Indonesia di sekitarmu dan pesan untuk diantar ke depan rumah.</p>
+          <div class="hero-actions">
+            <button class="primary" onclick="document.getElementById('restaurants').scrollIntoView({behavior:'smooth'})">Jelajahi makanan →</button>
+            <button class="secondary" id="promoBtn">🎁 Lihat promo</button>
+          </div>
+          <div class="trust"><span>⚡ Cepat</span><span>🛵 Delivery</span><span>🔒 Pembayaran aman</span></div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-food">🍜</div>
+          <div class="floating-card top">🔥 <strong>Promo hari ini</strong><small>Diskon sampai 40%</small></div>
+          <div class="floating-card bottom">⭐ <strong>4.9/5</strong><small>Restoran pilihan</small></div>
+          <div class="plate">🍚</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container categories">
+      <div class="section-head"><div><p class="eyebrow">Mau makan apa?</p><h2>Eksplor kategori</h2></div></div>
+      <div class="category-grid" id="categories"></div>
+    </section>
+
+    <section class="container" id="restaurants">
+      <div class="section-head">
+        <div><p class="eyebrow">Pilihan sekitar kamu</p><h2>Restoran populer</h2></div>
+        <select id="sortSelect" class="sort"><option value="popular">Paling populer</option><option value="rating">Rating tertinggi</option><option value="price">Harga terendah</option></select>
+      </div>
+      <div class="restaurant-grid" id="restaurantGrid"></div>
+      <div class="empty" id="emptyState" hidden>😅 Makanan yang kamu cari belum ketemu.</div>
+    </section>
+
+    <section class="promo-strip container">
+      <div><span class="eyebrow">FOODNESIA PROMO</span><h2>Gratis ongkir untuk pesanan pertama!</h2><p>Gunakan kode <strong>MAKANENAK</strong> saat checkout.</p></div>
+      <button class="primary" id="promoCodeBtn">Salin kode</button>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div><a class="brand" href="#"><span class="brand-mark">F</span><span>food<span>nesia</span></span></a><p>Teman makan Indonesia kapan pun kamu lapar.</p></div>
+      <div><strong>Foodnesia</strong><a href="#">Tentang kami</a><a href="#">Karier</a><a href="#">Mitra restoran</a></div>
+      <div><strong>Bantuan</strong><a href="#">Pusat bantuan</a><a href="#">Cara pesan</a><a href="#">Hubungi kami</a></div>
+    </div>
+    <div class="copyright">© 2026 Foodnesia. Demo website untuk project.</div>
+  </footer>
+
+  <aside class="cart-panel" id="cartPanel">
+    <div class="cart-head"><h2>Keranjang</h2><button id="closeCart">✕</button></div>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="cart-summary">
+      <div><span>Subtotal</span><strong id="subtotal">Rp0</strong></div>
+      <div><span>Biaya antar</span><strong id="deliveryFee">Rp0</strong></div>
+      <div class="total"><span>Total</span><strong id="total">Rp0</strong></div>
+      <button class="primary full" id="checkoutBtn">Lanjut checkout</button>
+    </div>
+  </aside>
+  <div class="overlay" id="overlay"></div>
+
+  <dialog id="locationDialog">
+    <div class="dialog-head"><h2>📍 Pilih lokasi</h2><button onclick="locationDialog.close()">✕</button></div>
+    <p>Pilih area pengantaran untuk melihat restoran di sekitarmu.</p>
+    <div class="location-options">
+      <button data-location="Palembang">Palembang</button><button data-location="Jakarta">Jakarta</button><button data-location="Bandung">Bandung</button><button data-location="Surabaya">Surabaya</button>
+    </div>
+  </dialog>
+
+  <dialog id="checkoutDialog">
+    <div class="dialog-head"><h2>Checkout</h2><button onclick="checkoutDialog.close()">✕</button></div>
+    <div class="checkout-box">
+      <label>Alamat pengantaran<input id="address" placeholder="Contoh: Jl. Merdeka No. 10"></label>
+      <label>Catatan untuk driver<textarea id="note" placeholder="Contoh: titip di pagar..."></textarea></label>
+      <label>Metode pembayaran<select id="payment"><option>QRIS</option><option>COD</option><option>E-wallet</option><option>Kartu debit/kredit</option></select></label>
+      <button class="primary full" id="placeOrder">Buat pesanan</button>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
